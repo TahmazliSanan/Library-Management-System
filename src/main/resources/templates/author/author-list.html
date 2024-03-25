@@ -64,7 +64,8 @@
                 <td colspan="3">
                     <a class="btn btn-outline-info"
                        th:href="@{/authors/details/{authorId}(authorId=${authorDto.id})}">Details</a>
-                    <a class="btn btn-outline-success" href="#">Edit</a>
+                    <a class="btn btn-outline-success"
+                       th:href="@{/authors/{authorId}/edit(authorId=${authorDto.id})}">Edit</a>
                     <a class="btn btn-outline-danger" href="#">Remove</a>
                 </td>
             </tr>
