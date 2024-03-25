@@ -62,7 +62,8 @@
                 <td th:text="${authorDto.nationality}"></td>
                 <td th:text="${authorDto.birthDate != null ? #dates.format(authorDto.birthDate, 'dd-MMM-yyyy') : '---'}"></td>
                 <td colspan="3">
-                    <a class="btn btn-outline-info" href="#">Details</a>
+                    <a class="btn btn-outline-info"
+                       th:href="@{/authors/details/{authorId}(authorId=${authorDto.id})}">Details</a>
                     <a class="btn btn-outline-success" href="#">Edit</a>
                     <a class="btn btn-outline-danger" href="#">Remove</a>
                 </td>
