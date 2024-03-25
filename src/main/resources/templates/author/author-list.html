@@ -44,6 +44,9 @@
 <br>
 <div class="container">
     <div class="mb-3">
+        <h2>Author list</h2>
+    </div>
+    <div class="mb-3">
         <a class="btn btn-outline-primary" th:href="@{/authors/add}">Add author</a>
     </div>
     <div>
@@ -66,7 +69,8 @@
                        th:href="@{/authors/details/{authorId}(authorId=${authorDto.id})}">Details</a>
                     <a class="btn btn-outline-success"
                        th:href="@{/authors/{authorId}/edit(authorId=${authorDto.id})}">Edit</a>
-                    <a class="btn btn-outline-danger" href="#">Remove</a>
+                    <a class="btn btn-outline-danger"
+                       th:href="@{/authors/{authorId}/remove(authorId=${authorDto.id})}">Remove</a>
                 </td>
             </tr>
             </tbody>
