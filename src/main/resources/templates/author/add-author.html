@@ -43,6 +43,9 @@
 </nav>
 <br>
 <div class="container">
+    <div class="mb-3">
+        <h2>Add author</h2>
+    </div>
     <form method="post" th:action="@{/authors/add}" th:object="${authorDto}">
         <div class="mb-3">
             <button type="submit" class="btn btn-primary">Submit</button>
