@@ -59,7 +59,7 @@
                    placeholder="Nationality" th:field="*{nationality}">
             <label for="nationality">Nationality</label>
             <span class="text-danger"
-                  th:if="${#fields.hasErrors('nationality')}" th:errors="*{fullName}"></span>
+                  th:if="${#fields.hasErrors('nationality')}" th:errors="*{nationality}"></span>
         </div>
         <div class="form-floating">
             <input type="date" class="form-control" id="birthDate"
