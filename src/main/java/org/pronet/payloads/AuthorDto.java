@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,4 +22,5 @@ public class AuthorDto {
     private Date birthDate;
     private Date createdAt;
     private Date updatedAt;
+    private List<BookDto> books;
 }
