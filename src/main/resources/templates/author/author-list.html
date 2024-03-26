@@ -47,7 +47,12 @@
         <h2>Author list</h2>
     </div>
     <div class="mb-3">
-        <a class="btn btn-outline-primary" th:href="@{/authors/add}">Add author</a>
+        <a class="btn btn-outline-primary float-start" th:href="@{/authors/add}">Add author</a>
+        <form th:action="@{/authors/search}" class="d-flex float-end" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search author..."
+                   aria-label="Search" name="keyword">
+            <button class="btn btn-outline-warning" type="submit">Find</button>
+        </form>
     </div>
     <div>
         <table class="table table-striped text-center">
