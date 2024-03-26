@@ -50,7 +50,7 @@
         <h2>Edit author</h2>
     </div>
     <form method="post"
-          th:action="@{/authors/{authorId}/edit(authorId=${authorDto.id})}"
+          th:action="@{/authors/{authorId}/edit(authorId=${authorId})}"
           th:object="${authorDto}">
         <div class="mb-3">
             <button type="submit" class="btn btn-success">Save</button>
