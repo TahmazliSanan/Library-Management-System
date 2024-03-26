@@ -7,10 +7,7 @@ import org.pronet.services.AuthorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -90,5 +87,14 @@ public class AuthorController {
             @PathVariable("authorId") Long authorId) {
         authorService.removeAuthor(authorId);
         return "redirect:/authors";
+    }
+
+    @GetMapping("/authors/search")
+    public String searchAuthors(
+            @RequestParam("keyword") String keyword,
+            Model model) {
+        List<AuthorDto> authorDtoList = authorService.searchAuthors(keyword);
+        model.addAttribute("authorDtoList", authorDtoList);
+        return "author/author-list";
     }
 }

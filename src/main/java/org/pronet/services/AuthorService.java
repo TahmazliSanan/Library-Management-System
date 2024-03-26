@@ -10,4 +10,5 @@ public interface AuthorService {
     List<AuthorDto> findAllAuthors();
     void editAuthorDetails(AuthorDto authorDto);
     void removeAuthor(Long authorId);
+    List<AuthorDto> searchAuthors(String keyword);
 }

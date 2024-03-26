@@ -48,4 +48,13 @@ public class AuthorServiceImpl implements AuthorService {
     public void removeAuthor(Long authorId) {
         authorRepository.deleteById(authorId);
     }
+
+    @Override
+    public List<AuthorDto> searchAuthors(String keyword) {
+        List<Author> authors = authorRepository.searchAuthors(keyword);
+        return authors
+                .stream()
+                .map((author) -> modelMapper.map(author, AuthorDto.class))
+                .toList();
+    }
 }
