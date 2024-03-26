@@ -50,7 +50,7 @@
         <h2>Book list</h2>
     </div>
     <div class="mb-3">
-        <form class="d-flex float-end" role="search">
+        <form th:action="@{/books/search}" class="d-flex float-end" role="search">
             <input class="form-control me-2" type="search" placeholder="Search book..."
                    aria-label="Search" name="keyword">
             <button class="btn btn-outline-warning" type="submit">Find</button>
