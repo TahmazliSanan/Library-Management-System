@@ -76,7 +76,7 @@
         <div class="card-body">
             <ul th:each="bookDto : ${authorDto.books}">
                 <li th:text="${'Name: ' + bookDto.name}"></li>
-                <li th:text="${'Price: ' + bookDto.price}"></li>
+                <li th:text="${'Price: ' + bookDto.price + '$'}"></li>
                 <li th:text="${'Published date: ' + #dates.format(bookDto.publishedDate, 'dd-MMM-yyyy')}"></li>
             </ul>
         </div>
