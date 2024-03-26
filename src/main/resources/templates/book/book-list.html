@@ -74,8 +74,10 @@
                 <td th:text="${bookDto.author.fullName}"></td>
                 <td th:text="${#dates.format(bookDto.publishedDate, 'dd-MMM-yyyy')}"></td>
                 <td colspan="3">
-                    <a class="btn btn-outline-info" href="#">Details</a>
-                    <a class="btn btn-outline-success" href="#">Edit</a>
+                    <a class="btn btn-outline-info"
+                       th:href="@{/books/details/{bookId}(bookId=${bookDto.id})}">Details</a>
+                    <a class="btn btn-outline-success"
+                       th:href="@{/books/{bookId}/edit(bookId=${bookDto.id})}">Edit</a>
                     <a class="btn btn-outline-danger" href="#">Remove</a>
                 </td>
             </tr>
