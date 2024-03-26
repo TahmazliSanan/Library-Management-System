@@ -59,7 +59,8 @@
                 <li th:text="${'Nationality: ' + authorDto.nationality}"></li>
                 <li th:text="${'Birth date: ' + #dates.format(authorDto.birthDate, 'dd-MMM-yyyy')}"></li>
             </ul>
-            <a th:href="@{/books/{authorId}/add(authorId=${authorDto.id})}" class="btn btn-primary">Add book</a>
+            <a th:href="@{/books/{authorId}/add(authorId=${authorDto.id})}"
+               class="btn btn-outline-primary">Add book</a>
             <a th:href="@{/authors}" class="btn btn-dark">Back</a>
         </div>
         <div class="card-footer text-body-secondary"
@@ -76,8 +77,9 @@
         <div class="card-body">
             <ul th:each="bookDto : ${authorDto.books}">
                 <li th:text="${'Name: ' + bookDto.name}"></li>
-                <li th:text="${'Price: ' + bookDto.price + '$'}"></li>
-                <li th:text="${'Published date: ' + #dates.format(bookDto.publishedDate, 'dd-MMM-yyyy')}"></li>
+                <li>
+                    <a class="btn btn-outline-info" th:href="@{/books/details/{bookId}(bookId=${bookDto.id})}">Details</a>
+                </li>
             </ul>
         </div>
     </div>
