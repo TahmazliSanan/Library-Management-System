@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,6 +24,8 @@ public class Author {
     @Column(updatable = false)
     private Date createdAt;
     private Date updatedAt;
+    @OneToMany(mappedBy = "author", cascade = CascadeType.REMOVE)
+    private List<Book> books = new ArrayList<>();
 
     @PrePersist
     protected void onCreate() {
