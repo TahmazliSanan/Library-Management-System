@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="">
@@ -42,6 +44,19 @@
                 </li>
             </ul>
         </div>
+        <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav ">
+                <li sec:authorize="!isAuthenticated()" class="nav-item">
+                    <a class="nav-link active" th:href="@{/auth/register}">Register</a>
+                </li>
+                <li sec:authorize="!isAuthenticated()" class="nav-item">
+                    <a class="nav-link active" th:href="@{/auth/login}">Login</a>
+                </li>
+                <li sec:authorize="isAuthenticated()" class="nav-item">
+                    <a class="nav-link active" th:href="@{/auth/logout}">Logout</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
 <br>
@@ -55,7 +70,7 @@
     <div th:if="${param.fail}" class="alert alert-danger">
         Username is already exist!
     </div>
-    <form th:action="@{/auth/register}" th:object="${userDto}" method="post">
+    <form th:action="@{/auth/register}" th:object="${registrationDto}" method="post">
         <div class="row">
             <div class="col">
                 <div class="form-floating mb-3">

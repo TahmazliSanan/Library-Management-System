@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8">
   <meta name="description" content="">
@@ -42,6 +44,19 @@
         </li>
       </ul>
     </div>
+    <div class="collapse navbar-collapse justify-content-end">
+      <ul class="navbar-nav ">
+        <li sec:authorize="!isAuthenticated()" class="nav-item">
+          <a class="nav-link active" th:href="@{/auth/register}">Register</a>
+        </li>
+        <li sec:authorize="!isAuthenticated()" class="nav-item">
+          <a class="nav-link active" th:href="@{/auth/login}">Login</a>
+        </li>
+        <li sec:authorize="isAuthenticated()" class="nav-item">
+          <a class="nav-link active" th:href="@{/auth/logout}">Logout</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
 <br>
@@ -52,7 +67,7 @@
   <form method="post" th:action="@{/books/{bookId}/edit(bookId=${bookId})}"
         th:object="${bookDto}">
     <div class="mb-3">
-      <button type="submit" class="btn btn-success">Save</button>
+      <button sec:authorize="hasAuthority('Admin')" type="submit" class="btn btn-success">Save</button>
     </div>
     <input type="hidden" class="form-control" id="id"
            placeholder="Full name" th:field="*{id}">

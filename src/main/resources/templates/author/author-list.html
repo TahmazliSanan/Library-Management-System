@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="">
@@ -42,6 +44,19 @@
                 </li>
             </ul>
         </div>
+        <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav ">
+                <li sec:authorize="!isAuthenticated()" class="nav-item">
+                    <a class="nav-link active" th:href="@{/auth/register}">Register</a>
+                </li>
+                <li sec:authorize="!isAuthenticated()" class="nav-item">
+                    <a class="nav-link active" th:href="@{/auth/login}">Login</a>
+                </li>
+                <li sec:authorize="isAuthenticated()" class="nav-item">
+                    <a class="nav-link active" th:href="@{/auth/logout}">Logout</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
 <br>
@@ -50,7 +65,7 @@
         <h2>Author list</h2>
     </div>
     <div class="mb-3">
-        <a class="btn btn-outline-primary float-start" th:href="@{/authors/add}">Add author</a>
+        <a sec:authorize="hasAuthority('Admin')" class="btn btn-outline-primary float-start" th:href="@{/authors/add}">Add author</a>
         <form th:action="@{/authors/search}" class="d-flex float-end" role="search">
             <input class="form-control me-2" type="search" placeholder="Search author..."
                    aria-label="Search" name="keyword">
@@ -75,9 +90,9 @@
                 <td colspan="3">
                     <a class="btn btn-outline-info"
                        th:href="@{/authors/details/{authorId}(authorId=${authorDto.id})}">Details</a>
-                    <a class="btn btn-outline-success"
+                    <a sec:authorize="hasAuthority('Admin')" class="btn btn-outline-success"
                        th:href="@{/authors/{authorId}/edit(authorId=${authorDto.id})}">Edit</a>
-                    <a class="btn btn-outline-danger"
+                    <a sec:authorize="hasAuthority('Admin')" class="btn btn-outline-danger"
                        th:href="@{/authors/{authorId}/remove(authorId=${authorDto.id})}">Remove</a>
                 </td>
             </tr>

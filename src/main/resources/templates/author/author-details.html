@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="">
@@ -42,6 +44,21 @@
                 </li>
             </ul>
         </div>
+        <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav ">
+                <ul class="navbar-nav ">
+                    <li sec:authorize="!isAuthenticated()" class="nav-item">
+                        <a class="nav-link active" th:href="@{/auth/register}">Register</a>
+                    </li>
+                    <li sec:authorize="!isAuthenticated()" class="nav-item">
+                        <a class="nav-link active" th:href="@{/auth/login}">Login</a>
+                    </li>
+                    <li sec:authorize="isAuthenticated()" class="nav-item">
+                        <a class="nav-link active" th:href="@{/auth/logout}">Logout</a>
+                    </li>
+                </ul>
+            </ul>
+        </div>
     </div>
 </nav>
 <br>
@@ -59,7 +76,7 @@
                 <li th:text="${'Nationality: ' + authorDto.nationality}"></li>
                 <li th:text="${'Birth date: ' + #dates.format(authorDto.birthDate, 'dd-MMM-yyyy')}"></li>
             </ul>
-            <a th:href="@{/books/{authorId}/add(authorId=${authorDto.id})}"
+            <a sec:authorize="hasAuthority('Admin')" th:href="@{/books/{authorId}/add(authorId=${authorDto.id})}"
                class="btn btn-outline-primary">Add book</a>
             <a th:href="@{/authors}" class="btn btn-dark">Back</a>
         </div>

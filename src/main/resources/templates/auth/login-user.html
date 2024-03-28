@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="">
@@ -42,6 +44,19 @@
                 </li>
             </ul>
         </div>
+        <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav ">
+                <li sec:authorize="!isAuthenticated()" class="nav-item">
+                    <a class="nav-link active" th:href="@{/auth/register}">Register</a>
+                </li>
+                <li sec:authorize="!isAuthenticated()" class="nav-item">
+                    <a class="nav-link active" th:href="@{/auth/login}">Login</a>
+                </li>
+                <li sec:authorize="isAuthenticated()" class="nav-item">
+                    <a class="nav-link active" th:href="@{/auth/logout}">Logout</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
 <br>
@@ -53,26 +68,22 @@
         Invalid username or password!
     </div>
     <div th:if="${param.logout}" class="alert alert-success">
-        You logged out!
+        You have been logged out!
     </div>
-    <form th:action="@{/auth/login}" th:object="${userDto}" method="post">
+    <form th:action="@{/auth/login}" method="post">
         <div class="row">
             <div class="col">
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="username"
-                           placeholder="Username" th:field="*{username}" name="username">
+                           placeholder="Username" name="username">
                     <label for="username">Username</label>
-                    <span class="text-danger"
-                          th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
                 </div>
             </div>
             <div class="col">
                 <div class="form-floating mb-3">
                     <input type="password" class="form-control" id="password"
-                           placeholder="Password" th:field="*{password}" name="password">
+                           placeholder="Password" name="password">
                     <label for="password">Password</label>
-                    <span class="text-danger"
-                          th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
                 </div>
             </div>
         </div>
